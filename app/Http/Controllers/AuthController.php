@@ -75,7 +75,7 @@ class AuthController extends Controller
 
         $redirectPath = $redirects[$roleName] ?? '/';
 
-        return redirect($redirectPath)->with('success', 'Logged in successfully.');
+        return redirect($redirectPath);
 
     }
 

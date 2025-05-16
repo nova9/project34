@@ -1,4 +1,4 @@
-<section class="sticky top-0 w-full text-gray-700 bg-white shadow-sm">
+<section class="sticky z-50 top-0 w-full text-gray-700 bg-white shadow-sm">
     <div class="container flex flex-col flex-wrap items-center justify-between py-3 mx-auto md:flex-row px-6">
         <div class="relative flex flex-col md:flex-row">
             <a href="/">
@@ -9,8 +9,8 @@
             </a>
             <nav class="flex flex-wrap items-center mb-5 md:mb-0 md:pl-8 md:ml-8 md:border-l md:border-gray-200">
                 <x-nav-item href="/" :active="request()->is('/')">Learn</x-nav-item>
-                <x-nav-item href="/teach" :active="request()->is('/teach')">Teach</x-nav-item>
-                <x-nav-item href="/about" :active="request()->is('/about')">About</x-nav-item>
+                <x-nav-item href="/teach" :active="request()->is('     teach')">Teach</x-nav-item>
+                <x-nav-item href="/about" :active="request()->is('about')">About</x-nav-item>
             </nav>
         </div>
 
