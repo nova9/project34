@@ -5,7 +5,7 @@
                 Instructors
             </div>
             <div class="py-2 px-2">
-                <div class="px-3 mb-3 uppercase text-gray-400">
+                <div class="px-3 mb-3 uppercase text-gray-400 font-['Source_Code_Pro']">
                     General
                 </div>
                 <a href="" class="bg-gray-100 rounded py-0.25 px-3 w-full block">

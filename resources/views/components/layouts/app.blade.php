@@ -5,15 +5,18 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=abeezee:400" rel="stylesheet" />
+    <link rel="icon" href="{{ asset('assets/images/logo.svg') }}" type="image/svg+xml">
 
-    @vite(['resources/css/app.css'])
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
-    <title>{{ $title ?? 'Project34' }}</title>
+    <title>{{ $title ?? $value = env('APP_NAME', 'project34') }}</title>
 </head>
 
-<body >
+<body class="font-['Plus_Jakarta_Sans']">
 
 @if (session('success'))
     <div

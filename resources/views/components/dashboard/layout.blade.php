@@ -15,7 +15,7 @@
                         @click="open = !open"
                     >
                         <div
-                            class="absolute left-0 top-0 h-full rounded-lg bg-rose-600 transition-all duration-500 ease-out"
+                            class="absolute left-0 top-0 h-full rounded-lg bg-rose-700 transition-all duration-500 ease-out"
                             style="width: 75%;"
                         ></div>
                         <span
@@ -132,13 +132,7 @@
                         <div class="border-b border-gray-200 py-1 px-1">
                             <a href="/driving_school/profile">
                                 <div class="flex gap-4 hover:bg-gray-100 rounded-sm p-2 cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                         fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                         stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings">
-                                        <path
-                                            d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
-                                        <circle cx="12" cy="12" r="3"/>
-                                    </svg>
+                                    <i data-lucide="circle-user" class="size-4"></i>
                                     <span class="text-xs">Profile</span>
                                 </div>
                             </a>
@@ -147,13 +141,7 @@
                         <div class="py-1 px-1">
                             <div class="flex gap-4 hover:bg-gray-100 rounded-sm p-2 cursor-pointer"
                                  onclick="document.getElementById('logout-form').submit();">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                     stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out">
-                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                                    <polyline points="16 17 21 12 16 7"/>
-                                    <line x1="21" x2="9" y1="12" y2="12"/>
-                                </svg>
+                                <i data-lucide="log-out" class="size-4"></i>
                                 <span class="text-xs">Logout</span>
                             </div>
                         </div>
@@ -165,45 +153,34 @@
         </div>
         {{--        {{/* Left Bar */}}--}}
         <x-dashboard.sidebar :svgWidth="24">
-            <x-dashboard.sidebar-nav-item label="Home" href="/driving_school/dashboard"
+            <x-dashboard.sidebar-nav-item label="Dashboard" href="/driving_school/dashboard"
                                           :active="request()->is('driving_school/dashboard*')">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                     class="lucide lucide-house">
-                    <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
-                    <path
-                        d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                </svg>
+                <i data-lucide="layout-dashboard"></i>
             </x-dashboard.sidebar-nav-item>
             <x-dashboard.sidebar-nav-item
                 label="Instructors" href="/driving_school/instructors"
                 :active="request()->is('driving_school/instructors*')">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                     class="lucide lucide-user-round">
-                    <circle cx="12" cy="8" r="5"/>
-                    <path d="M20 21a8 8 0 0 0-16 0"/>
-                </svg>
+                <i data-lucide="user-round"></i>
             </x-dashboard.sidebar-nav-item>
             <x-dashboard.sidebar-nav-item
                 label="Packages"
                 href="/driving_school/packages"
                 :active="request()->is('driving_school/packages*')"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                     class="lucide lucide-package-icon lucide-package">
-                    <path
-                        d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/>
-                    <path d="M12 22V12"/>
-                    <polyline points="3.29 7 12 12 20.71 7"/>
-                    <path d="m7.5 4.27 9 5.15"/>
-                </svg>
+                <i data-lucide="package"></i>
             </x-dashboard.sidebar-nav-item>
 
 
             {{--                {{/* Spacer */}}--}}
             <div class="grow"></div>
+
+            <x-dashboard.sidebar-nav-item
+                label="Profile"
+                href="/driving_school/profile"
+                :active="request()->is('driving_school/profile*')"
+            >
+                <i data-lucide="circle-user"></i>
+            </x-dashboard.sidebar-nav-item>
 
             <form action="/logout" method="post" id="logout-form">
                 @csrf

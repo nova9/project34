@@ -1,3 +1,5 @@
 <x-dashboard.layout>
-    hi
+    <div class="max-w-7xl">
+
+    </div>
 </x-dashboard.layout>
