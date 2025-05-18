@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\DrivingSchool;
 
 use Livewire\Component;
 
@@ -8,6 +8,6 @@ class Packages extends Component
 {
     public function render()
     {
-        return view('livewire.packages');
+        return view('livewire.driving-school.packages');
     }
 }

@@ -1,4 +1,4 @@
-<section class="sticky z-50 top-0 w-full text-gray-700 bg-white shadow-sm">
+<section class="sticky z-60 top-0 w-full text-gray-700 bg-white shadow-sm">
     <div class="container flex flex-col flex-wrap items-center justify-between py-3 mx-auto md:flex-row px-6">
         <div class="relative flex flex-col md:flex-row">
             <a href="/">
