@@ -1,4 +1,17 @@
-import { createIcons, LogOut, CircleUser, Package, UserRound, LayoutDashboard, GraduationCap, CarFront, Cog } from 'lucide';
+import { createIcons,
+    LogOut,
+    CircleUser,
+    ChevronUp,
+    ChevronDown,
+    Package,
+    UserRound,
+    LayoutDashboard,
+    GraduationCap,
+    CarFront,
+    Cog,
+    Search,
+    Plus
+} from 'lucide';
 
 document.addEventListener('livewire:navigated', () => {
     createIcons({
@@ -10,7 +23,11 @@ document.addEventListener('livewire:navigated', () => {
             LayoutDashboard,
             GraduationCap,
             CarFront,
-            Cog
+            Cog,
+            ChevronUp,
+            ChevronDown,
+            Search,
+            Plus
         },
         attrs: {
             'stroke-width': 1.5,

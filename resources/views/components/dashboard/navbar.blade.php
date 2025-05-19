@@ -8,7 +8,7 @@
             <div style="width: {{$svgWidth}}px"></div>
         </div>
     </div>
-    <div class="group absolute top-0 w-full hover:w-[200px] h-full bg-white hover:border-r border-gray-200 p-1 flex flex-col gap-0.5">
+    <div class="group absolute top-0 w-full hover:w-[200px] h-full bg-white hover:border-r border-gray-200 p-1 flex flex-col gap-1">
         {{ $slot }}
     </div>
 </div>

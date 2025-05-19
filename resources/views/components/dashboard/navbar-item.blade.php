@@ -10,11 +10,11 @@
     $variantClasses = [
         'default' => [
             'base' => 'text-gray-600 hover:text-gray-900 hover:bg-gray-100',
-            'active' => 'bg-gray-100 text-gray-900',
+            'active' => 'bg-gray-200 text-gray-900',
         ],
         'danger' => [
             'base' => 'text-red-500 hover:text-red-600 hover:bg-red-50',
-            'active' => 'bg-red-100 text-red-600',
+            'active' => 'bg-red-200 text-red-600',
         ],
     ];
 
@@ -28,7 +28,7 @@
 {{--        <i data-lucide="{{ $icon }}"></i>--}}
         <img src="/assets/images/skeuomorphic/{{$icon}}.webp" class="size-10" alt="icon">
     </div>
-    <span class="{{ $active ? 'hidden group-hover:block font-medium leading-0' : 'invisible group-hover:visible' }} text-sm">
+    <span class="{{ $active ? 'hidden group-hover:block font-medium leading-0' : 'invisible group-hover:visible' }} text-sm font-medium">
         {{ $label }}
     </span>
 </a>

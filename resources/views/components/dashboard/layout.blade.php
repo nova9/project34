@@ -1,5 +1,5 @@
 <div class="w-full">
-    <div class="fixed top-0 h-screen grid grid-cols-[auto_1fr] grid-rows-[50px_1fr] bg-gray-50 w-full">
+    <div class="h-screen grid grid-cols-[auto_1fr] grid-rows-[50px_1fr] bg-gray-50 w-full">
         {{--            Logo--}}
         <div class="border-r border-b border-gray-200 flex items-center justify-center w-full bg-white">
             <x-logo class="size-8"/>
@@ -7,16 +7,7 @@
         {{--        {{/* Top Bar */}}--}}
         <div class="border-b border-gray-200 bg-white text-gray-800 flex justify-between px-4">
             <div class="flex items-center">
-                <x-select
-                    name="grocery_item"
-                                    :items="[
-                        ['title' => 'Milk', 'value' => 'milk', 'disabled' => false],
-                        ['title' => 'Eggs', 'value' => 'eggs', 'disabled' => false],
-                        ['title' => 'Cheese', 'value' => 'cheese', 'disabled' => false],
-                    ]"
-                    :selected="'milk'"
-                    class="relative w-48"
-                />
+                <livewire:team-select />
             </div>
             <div class="flex items-center gap-4">
                 {{--                 Progress --}}
