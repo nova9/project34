@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_attributes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignIdFor(\App\Models\User::class);
+            $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete();
             $table->string('key');
             $table->text('value');
 

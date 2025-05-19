@@ -25,8 +25,18 @@
                 <p class="mt-2 text-sm text-gray-600">Add, edit, or remove instructors for your driving
                     school.</p>
             </div>
-            <x-modal buttonText="Add new">
-                <form wire:submit="save">
+            <x-modal>
+                <x-slot:trigger>
+                    <button
+                        wire:click="create"
+                        class="flex items-center px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-md hover:bg-gray-700 transition-colors">
+                        New Instructor
+                        <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                        </svg>
+                    </button>
+                </x-slot:trigger>
+                <form wire:submit="store">
                     <div class="space-y-4">
                         <div class="w-full">
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
@@ -47,7 +57,7 @@
                         </div>
                         <div class="w-full">
                             <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                            <input wire:model.live="phone" id="phone" name="phone" placeholder="0777252917" type="tel"
+                            <input wire:model.live="phone" id="phone" name="phone" placeholder="0712345678" type="tel"
                                    class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50 @error('newPhone') border-red-500 @enderror"
                                    aria-describedby="phone-error"/>
                             @error('phone') <span id="phone-error"
@@ -109,12 +119,70 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $item->name }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $item->email }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $item->userAttributes()->where('key', 'phone')->first()->value }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <button
-                                    @click="document.getElementById('edit-instructor-modal').classList.toggle('hidden')"
-                                    class="text-gray-600 hover:text-gray-900">Edit
-                                </button>
-                                <button class="ml-4 text-red-600 hover:text-red-900">Delete</button>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <div class="flex gap-2 justify-end">
+                                    <div>
+                                        <x-modal>
+                                            <x-slot:trigger>
+                                                <span wire:click="edit({{$item->id}})">Edit</span>
+                                            </x-slot:trigger>
+                                            <div>
+                                                <form wire:submit="update({{$item->id}})">
+                                                    <div class="space-y-4">
+                                                        <div class="w-full">
+                                                            <label for="name{{$item->id}}" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                                            <input
+                                                                wire:model.blur="name"
+                                                                id="name{{$item->id}}"
+                                                                value="{{ $item->name }}"
+                                                                placeholder="John Doe" type="text"
+                                                                class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50 @error('newName') border-red-500 @enderror"
+                                                                aria-describedby="name-error"
+                                                            />
+                                                            @error('name')
+                                                            <span id="name-error" class="text-red-500 text-sm">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="w-full">
+                                                            <label for="email{{$item->id}}"
+                                                                   class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                                            <input
+                                                                wire:model.blur="email"
+                                                                id="email{{$item->id}}"
+                                                                placeholder="john@outlook.com"
+                                                                type="email"
+                                                                class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50 @error('newEmail') border-red-500 @enderror"
+                                                                aria-describedby="email-error"
+                                                            />
+                                                            @error('email')
+                                                            <span id="email-error" class="text-red-500 text-sm">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="w-full">
+                                                            <label for="phone{{$item->id}}"
+                                                                   class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                                                            <input wire:model.live="phone"
+                                                                   id="phone{{$item->id}}"
+                                                                   placeholder="0777252917" type="tel"
+                                                                   class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50 @error('newPhone') border-red-500 @enderror"
+                                                                   aria-describedby="phone-error"/>
+                                                            @error('phone')
+                                                            <span id="phone-error" class="text-red-500 text-sm">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-6 flex justify-end gap-2">
+                                                        <button type="submit"
+                                                                class="w-full px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-md hover:bg-gray-700 disabled:opacity-50">
+                                                            Save
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </x-modal>
+                                    </div>
+                                    <button class="ml-4 text-red-600 hover:text-red-900" wire:click="destroy({{$item->id}})">Delete</button>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

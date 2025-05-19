@@ -35,7 +35,12 @@ class Instructors extends Component
         $this->loadInstructors();
     }
 
-    public function save()
+    public function create()
+    {
+        $this->resetInputFields();
+    }
+
+    public function store()
     {
         $validated = $this->validate();
 
@@ -50,8 +55,40 @@ class Instructors extends Component
         ]);
         $this->loadInstructors();
         $this->resetInputFields();
+    }
 
-        session()->flash('success', 'Instructor added successfully.');
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        $this->name = $user->name;
+        $this->email = $user->email;
+        $this->phone = $user->userAttributes()->where('key', 'phone')->first()->value ?? '';
+    }
+
+    public function update($id)
+    {
+        $validated = $this->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'phone' => 'required|regex:/^0[0-9]{9}$/',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->update(Arr::except($validated, ['phone']));
+        $user->userAttributes()->updateOrCreate(
+            ['key' => 'phone'],
+            ['value' => $this->phone]
+        );
+
+        $this->loadInstructors();
+    }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->teams()->detach($this->selectedTeamId);
+        $user->delete();
+        $this->loadInstructors();
     }
 
     public function render()

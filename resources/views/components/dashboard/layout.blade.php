@@ -154,6 +154,7 @@
             </div>
 
         </div>
+
         {{--        {{/* Left Bar */}}--}}
         <x-dashboard.navbar :svgWidth="40">
             <x-dashboard.navbar-item

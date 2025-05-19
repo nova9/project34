@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignIdFor(\App\Models\Role::class);
-            $table->foreignIdFor(\App\Models\Team::class)->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\User::class)->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Team::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete();
         });
     }
 

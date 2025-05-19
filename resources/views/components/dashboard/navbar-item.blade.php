@@ -28,7 +28,9 @@
 {{--        <i data-lucide="{{ $icon }}"></i>--}}
         <img src="/assets/images/skeuomorphic/{{$icon}}.webp" class="size-10" alt="icon">
     </div>
-    <span class="{{ $active ? 'hidden group-hover:block font-medium leading-0' : 'invisible group-hover:visible' }} text-sm font-medium">
+    <span
+        class="{{ $active ? 'hidden group-hover:block font-medium leading-0' : 'invisible group-hover:visible' }} text-sm font-medium"
+    >
         {{ $label }}
     </span>
 </a>
