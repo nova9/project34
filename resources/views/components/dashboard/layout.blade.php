@@ -208,6 +208,7 @@
                         href="#"
                         icon="log-out"
                         variant="danger"
+                        noLink
                     />
                 </button>
             </form>

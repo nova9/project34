@@ -3,6 +3,7 @@
     'active' => false,
     'icon' => null,
     'variant' => 'default', // Added variant prop with default value
+    'noLink' => false,
 ])
 
 @php
@@ -23,14 +24,28 @@
     $classes .= $active ? $variantClasses[$variant]['active'] : $variantClasses[$variant]['base'];
 @endphp
 
-<a {{ $attributes->merge(['class' => $classes]) }} wire:navigate.hover>
-    <div class="shrink-0">
-{{--        <i data-lucide="{{ $icon }}"></i>--}}
-        <img src="/assets/images/skeuomorphic/{{$icon}}.webp" class="size-10" alt="icon">
+@if($noLink)
+    <div {{ $attributes->merge(['class' => $classes]) }}>
+        <div class="shrink-0">
+{{--            <i data-lucide="{{ $icon }}"></i>--}}
+            <img src="/assets/images/skeuomorphic/{{$icon}}.webp" class="size-10" alt="icon">
+        </div>
+        <span
+            class="{{ $active ? 'hidden group-hover:block font-medium leading-0' : 'invisible group-hover:visible' }} text-sm font-medium"
+        >
+            {{ $label }}
+        </span>
     </div>
-    <span
-        class="{{ $active ? 'hidden group-hover:block font-medium leading-0' : 'invisible group-hover:visible' }} text-sm font-medium"
-    >
+@else
+    <a {{ $attributes->merge(['class' => $classes]) }} wire:navigate.hover>
+        <div class="shrink-0">
+            {{--        <i data-lucide="{{ $icon }}"></i>--}}
+            <img src="/assets/images/skeuomorphic/{{$icon}}.webp" class="size-10" alt="icon">
+        </div>
+        <span
+            class="{{ $active ? 'hidden group-hover:block font-medium leading-0' : 'invisible group-hover:visible' }} text-sm font-medium"
+        >
         {{ $label }}
-    </span>
-</a>
+        </span>
+    </a>
+@endif

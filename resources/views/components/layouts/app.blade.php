@@ -29,7 +29,7 @@
         x-transition:leave="transition ease-in duration-200"
         x-transition:leave-start="opacity-100 translate-y-0 scale-100"
         x-transition:leave-end="opacity-0 -translate-y-4 scale-95"
-        class="group fixed items-center top-10 left-1/2 -translate-x-1/2 z-50 flex shadow-sm px-3 py-3 bg-white rounded border border-gray-50 gap-2"
+        class="group z-50 fixed items-center top-10 left-1/2 -translate-x-1/2 z-50 flex shadow-sm px-3 py-3 bg-white rounded border border-gray-50 gap-2"
     >
         <div class="text-green-500 size-4">
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-icon lucide-circle-check"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
