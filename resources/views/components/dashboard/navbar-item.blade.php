@@ -19,13 +19,14 @@
     ];
 
     // Determine classes based on variant and active state
-    $classes = 'cursor-pointer rounded-md flex items-center p-1 gap-2 transition-all duration-300 ';
+    $classes = 'cursor-pointer rounded-md flex items-center p-0.5 gap-2 transition-all duration-300 ';
     $classes .= $active ? $variantClasses[$variant]['active'] : $variantClasses[$variant]['base'];
 @endphp
 
 <a {{ $attributes->merge(['class' => $classes]) }} wire:navigate.hover>
     <div class="shrink-0">
-        <i data-lucide="{{ $icon }}"></i>
+{{--        <i data-lucide="{{ $icon }}"></i>--}}
+        <img src="/assets/images/skeuomorphic/{{$icon}}.webp" class="size-10" alt="icon">
     </div>
     <span class="{{ $active ? 'hidden group-hover:block font-medium leading-0' : 'invisible group-hover:visible' }} text-sm">
         {{ $label }}

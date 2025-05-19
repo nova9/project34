@@ -8,6 +8,12 @@
         },
         handleCloseModal() {
             this.$refs.modal.close();
+        },
+        handleClickOutside(event) {
+            console.log('click outside');
+            if (this.$refs.modal === event.target) {
+                this.handleCloseModal();
+            }
         }
     }">
     <button
@@ -23,6 +29,8 @@
     <dialog
         x-ref="modal"
         class="modal fixed top-1/2 left-1/2 -translate-1/2 rounded-md p-6 shadow-sm"
+
+        @click="handleClickOutside($event)"
     >
         <div class="flex justify-between mb-2">
 {{--            press esc to close text--}}

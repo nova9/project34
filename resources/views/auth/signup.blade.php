@@ -98,63 +98,28 @@
                             @enderror
                         </div>
 
-                        <div
-                            x-data="{
-                                selectedOption: 'student',
-                                updateMarker(radioButton) {
-                                    this.$refs.tabMarker.style.width = radioButton.offsetWidth + 'px';
-                                    this.$refs.tabMarker.style.height = radioButton.offsetHeight + 'px';
-                                    this.$refs.tabMarker.style.left = radioButton.offsetLeft + 'px';
-                                }
-                            }"
-                            x-init="updateMarker($refs.tabButtons.querySelector('input:checked').parentElement);"
-                            class="relative w-full"
-                        >
-                            <div
-                                x-ref="tabButtons"
-                                class="relative inline-grid items-center justify-center w-full h-10 grid-cols-2 p-1 text-gray-500 bg-gray-100 rounded-lg select-none"
-                            >
-                                <label
-                                    class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap"
-                                >
+                        <x-tabs :tabs="[
+                            ['title' => 'Driving School'],
+                            ['title' => 'Student'],
+                        ]">
+                            <x-tabs.tab>
+                                <div class="w-full">
                                     <input
-                                        type="radio"
-                                        name="role"
-                                        value="student"
-                                        x-model="selectedOption"
-                                        @change="updateMarker($el.parentElement)"
-                                        class="sr-only"
-                                        checked
+                                        type="text"
+                                        placeholder="Driving school name"
+                                        name="driving_school_name"
+                                        class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
                                     />
-                                    Student
-                                </label>
-                                <label
-                                    class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap"
-                                >
-                                    <input
-                                        type="radio"
-                                        name="role"
-                                        value="driving_school"
-                                        x-model="selectedOption"
-                                        @change="updateMarker($el.parentElement)"
-                                        class="sr-only"
-                                    />
-                                    Driving School
-                                </label>
-                                <div
-                                    x-ref="tabMarker"
-                                    class="absolute left-0 z-10 w-1/2 h-full duration-300 ease-out"
-                                    x-cloak
-                                >
-                                    <div class="w-full h-full bg-white rounded-md shadow-sm"></div>
+                                    @error('driving_school_name')
+                                    <div class="flex mt-1">
+                                        <p class="text-rose-600 text-xs">{{ $message }}</p>
+                                    </div>
+                                    @enderror
                                 </div>
-                            </div>
-                            @error('role')
-                            <div class="flex mt-1">
-                                <p class="text-rose-600 text-xs">{{ $message }}</p>
-                            </div>
-                            @enderror
-                        </div>
+                            </x-tabs.tab>
+                            <x-tabs.tab>
+                            </x-tabs.tab>
+                        </x-tabs>
 
                         <button type="submit"
                                 class="inline-flex items-center justify-center w-full h-10 px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none">

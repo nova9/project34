@@ -5,7 +5,19 @@
             <x-logo class="size-8"/>
         </div>
         {{--        {{/* Top Bar */}}--}}
-        <div class="border-b border-gray-200 bg-white text-gray-800 flex justify-end pr-4">
+        <div class="border-b border-gray-200 bg-white text-gray-800 flex justify-between px-4">
+            <div class="flex items-center">
+                <x-select
+                    name="grocery_item"
+                                    :items="[
+                        ['title' => 'Milk', 'value' => 'milk', 'disabled' => false],
+                        ['title' => 'Eggs', 'value' => 'eggs', 'disabled' => false],
+                        ['title' => 'Cheese', 'value' => 'cheese', 'disabled' => false],
+                    ]"
+                    :selected="'milk'"
+                    class="relative w-48"
+                />
+            </div>
             <div class="flex items-center gap-4">
                 {{--                 Progress --}}
                 <div class="w-48 relative" x-data="{ open: false }">
@@ -130,7 +142,7 @@
                         </div>
 
                         <div class="border-b border-gray-200 py-1 px-1">
-                            <a href="/driving_school/profile">
+                            <a href="/profile">
                                 <div class="flex gap-4 hover:bg-gray-100 rounded-sm p-2 cursor-pointer">
                                     <i data-lucide="circle-user" class="size-4"></i>
                                     <span class="text-xs">Profile</span>
@@ -152,7 +164,7 @@
 
         </div>
         {{--        {{/* Left Bar */}}--}}
-        <x-dashboard.navbar :svgWidth="24">
+        <x-dashboard.navbar :svgWidth="40">
             <x-dashboard.navbar-item
                 label="Dashboard"
                 href="/driving_school/dashboard"
@@ -190,10 +202,10 @@
             <div class="grow"></div>
 
             <x-dashboard.navbar-item
-                label="Profile"
-                href="/driving_school/profile"
-                :active="request()->is('driving_school/profile*')"
-                icon="circle-user"
+                label="Settings"
+                href="/driving_school/settings"
+                :active="request()->is('driving_school/settings*')"
+                icon="cog"
             />
 
             <form action="/logout" method="post" id="logout-form">

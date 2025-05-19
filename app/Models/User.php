@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\HasAttributes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +12,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasAttributes;
 
     /**
      * The attributes that are mass assignable.
@@ -47,13 +48,11 @@ class User extends Authenticatable
         ];
     }
 
-    public function roles(): BelongsToMany
+    public function teams(): BelongsToMany
     {
-        return $this->belongsToMany(Role::class)->withTimestamps();
-    }
-
-    public function hasAnyRole(array $roles)
-    {
-        return $this->roles()->whereIn('name', $roles)->exists();
+        return $this->belongsToMany(Team::class)
+            ->using(TeamUser::class)
+            ->withPivot('role_id')
+            ->withTimestamps();
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,18 +9,19 @@ Route::get('/teach', function () {
     return view('teach');
 });
 
-Route::get('/signup', [AuthController::class, 'signup']);
-Route::post('/signup', [AuthController::class, 'signup_post']);
-Route::get('/login', [AuthController::class, 'login']);
-Route::post('/login', [AuthController::class, 'login_post'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/signup', [\App\Http\Controllers\AuthController::class, 'signup']);
+Route::post('/signup', [\App\Http\Controllers\AuthController::class, 'signup_post']);
+Route::get('/login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login_post'])->name('login');
+Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 
-Route::middleware('role:driving_school')->group(function () {
-    Route::get('/driving_school/dashboard', \App\Livewire\DrivingSchool\Dashboard::class);
-    Route::get('/driving_school/instructors', \App\Livewire\DrivingSchool\Instructors::class);
-    Route::get('/driving_school/packages', \App\Livewire\DrivingSchool\Packages::class);
-    Route::get('/driving_school/profile', \App\Livewire\DrivingSchool\Profile::class);
-    Route::get('/driving_school/students', \App\Livewire\DrivingSchool\Students::class);
-    Route::get('/driving_school/lessons', \App\Livewire\DrivingSchool\Lessons::class);
+Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+Route::prefix('/driving_school')->group(function () {
+    Route::get('/dashboard', \App\Livewire\DrivingSchool\Dashboard::class);
+    Route::get('/instructors', \App\Livewire\DrivingSchool\Instructors::class);
+    Route::get('/packages', \App\Livewire\DrivingSchool\Packages::class);
+    Route::get('/students', \App\Livewire\DrivingSchool\Students::class);
+    Route::get('/lessons', \App\Livewire\DrivingSchool\Lessons::class);
 });
+Route::get('/profile', \App\Livewire\Profile::class);
 

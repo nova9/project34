@@ -15,17 +15,28 @@
         </div>
 
         <div class="inline-flex items-center ml-5 space-x-6 lg:justify-end">
-            <a href="/login"
-               class=" font-medium leading-6 text-gray-600 whitespace-no-wrap transition duration-150 ease-in-out hover:text-gray-900">
-                Log in
-            </a>
-            <a href="/signup"
-               class="inline-flex items-center justify-center px-4 py-2  font-medium leading-6 text-white
+            @if(auth()->check())
+                <a href="{{ route('dashboard') }}"
+                   class="inline-flex items-center justify-center px-4 py-2  font-medium leading-6 text-white
                whitespace-no-wrap bg-gray-900 border border-transparent rounded-md shadow-sm hover:bg-gray-700
                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 transition"
-            >
-                Sign up
-            </a>
+                >
+                    Dashboard
+                </a>
+            @else
+                <a href="/login"
+                   class=" font-medium leading-6 text-gray-600 whitespace-no-wrap transition duration-150 ease-in-out hover:text-gray-900">
+                    Log in
+                </a>
+                <a href="/signup"
+                   class="inline-flex items-center justify-center px-4 py-2  font-medium leading-6 text-white
+               whitespace-no-wrap bg-gray-900 border border-transparent rounded-md shadow-sm hover:bg-gray-700
+               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 transition"
+                >
+                    Sign up
+                </a>
+            @endif
+
         </div>
     </div>
 </section>

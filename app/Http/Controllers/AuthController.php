@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\Team;
 use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
@@ -25,19 +26,20 @@ class AuthController extends Controller
             'name' => 'required|string',
             'email' => 'required|email',
             'password' => Password::default(),
-            'role' => 'required|in:student,driving_school',
+            'selected_tab' => 'required:integer',
+            'driving_school_name' => 'required_if:selected_tab,1|string',
         ]);
 
-        $user = null;
 
-        DB::transaction(function() use ($validated, &$user) {
-            $user = User::create(
-                Arr::except($validated, 'role')
-            );
-            $user->roles()->attach(
-                Role::where('name', $validated['role'])->first()
-            );
-        });
+        $user = User::create(
+            Arr::except($validated, ['selected_tab', 'driving_school_name'])
+        );
+        $team = Team::create([
+            'name' => $validated['driving_school_name']
+        ]);
+        $user->teams()->attach($team->id, [
+            'role_id' => Role::where('name', 'owner')->first()->id,
+        ]);
 
         Auth::login($user);
         return redirect('/login')->with('success', 'Account created successfully. You can now log in.');
@@ -55,7 +57,7 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        if (! Auth::attempt($validated)) {
+        if (!Auth::attempt($validated)) {
             throw ValidationException::withMessages([
                 'email' => 'The provided credentials do not match our records.',
             ]);
@@ -64,18 +66,8 @@ class AuthController extends Controller
         request()->session()->regenerate();
 
         $user = Auth::user();
-        $roleName = $user->roles()->first()->name;
 
-        $redirects = [
-            'driving_school' => '/driving_school/dashboard',
-            'student'        => '/student/dashboard',
-            'admin'          => '/admin/dashboard',
-            // Add more roles here as needed
-        ];
-
-        $redirectPath = $redirects[$roleName] ?? '/';
-
-        return redirect($redirectPath);
+        return redirect()->route('dashboard');
 
     }
 
